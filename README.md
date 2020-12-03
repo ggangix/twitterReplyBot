@@ -19,9 +19,9 @@ TWITTER_ACCESS_TOKEN_SECRET=
 
 4. Fill the config.json with the information that you want to use to your bot.
 
-   4.1 twitterUserToTrack: The twitter user that you want to listen for an specific word
-   4.2 triggerWord: The word that will trigger the reply.
-   4.3 messages: An array with replies to be selected randomly.
+   - twitterUserToTrack: The twitter user that you want to listen for an specific word
+   - triggerWord: The word that will trigger the reply.
+   - messages: An array with replies to be selected randomly.
 
 5. npm start and have fun!
 
