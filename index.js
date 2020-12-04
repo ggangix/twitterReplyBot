@@ -20,23 +20,29 @@ const stream = T.stream("statuses/filter", {
 
 stream.on("tweet", (tweet) => {
   console.log("tweet from " + tweet.user.screen_name);
-
   if (tweet.text.toLowerCase().indexOf(triggerWord) !== -1) {
-    reply(tweet.id_str, tweet.user.screen_name);
+    reply(tweet.id_str);
   }
 });
 
-function reply(id, username) {
+function reply(id) {
   const params = {
-    status: `@${username} ${generateRandomMessage()}`,
+    status: `${generateRandomMessage()}`,
     in_reply_to_status_id: id,
+    auto_populate_reply_metadata: true,
   };
   T.post(`statuses/update`, params, (err, data, response) => {
     if (err) console.log("error");
-    if (!err) console.log("everyting was fine");
+    if (!err) console.log("everything was fine");
   });
 }
 
 function generateRandomMessage() {
-  return messages[Math.floor(Math.random() * messages.length)];
+  return `${
+    messages[Math.floor(Math.random() * messages.length)]
+  } ^${randomNumber()}`;
+}
+
+function randomNumber() {
+  return Math.floor(1000 + Math.random() * 9000);
 }
