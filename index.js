@@ -21,8 +21,9 @@ const stream = T.stream("statuses/filter", {
 stream.on("tweet", (tweet) => {
   console.log("tweet from " + tweet.user.screen_name);
   if (tweet.text.toLowerCase().indexOf(triggerWord) !== -1) {
-    reply(tweet.id_str);
+    return reply(tweet.id_str);
   }
+  console.log("tweet doesn't have the trigger word.");
 });
 
 function reply(id) {
